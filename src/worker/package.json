@@ -1,10 +1,24 @@
 {
+  "name": "worker",
+  "organization": "complexk8s",
+  "gitrepo": "docker-kubernetes",
+  "version": "1.0.0",
+  "configFileVersion": "1.0.0",
+  "description": "ComplexK8s Worker service",
+  "docker": {
+    "hub": "docker.pkg.github.com",
+    "tag": "$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version"
+  },
   "dependencies": {
     "nodemon": "1.18.3",
     "redis": "2.8.0"
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "docker:login": "cat ../..//TOKEN.txt | docker login https://$npm_package_docker_hub -u rsouza01 --password-stdin",
+    "docker:build": "docker build -t $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version .",
+    "docker:push": "docker push $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version",
+    "docker:purge": "docker system prune --all"
   }
 }
