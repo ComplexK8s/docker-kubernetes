@@ -1,0 +1,19 @@
+{
+  "name": "nginx",
+  "organization": "complexk8s",
+  "gitrepo": "docker-kubernetes",
+  "version": "1.0.0",
+  "configFileVersion": "1.0.0",
+  "description": "ComplexK8s Nginx Server",
+  "docker": {
+    "hub": "docker.pkg.github.com",
+    "tag": "$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version"
+  },
+
+  "scripts": {
+    "docker:login": "cat ../..//TOKEN.txt | docker login https://$npm_package_docker_hub -u rsouza01 --password-stdin",
+    "docker:build": "docker build -t $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version .",
+    "docker:push": "docker push $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version",
+    "docker:purge": "docker system prune --all"
+  }
+}
