@@ -1,4 +1,15 @@
 {
+  "name": "server",
+  "organization": "complexk8s",
+  "gitrepo": "docker-kubernetes",
+  "version": "1.0.0",
+  "configFileVersion": "1.0.0",
+  "description": "ComplexK8s Backend API Server",
+  "docker": {
+    "hub": "docker.pkg.github.com",
+    "tag": "$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version"
+  },
+
   "dependencies": {
     "express": "4.16.3",
     "pg": "8.0.3",
@@ -9,6 +20,11 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "start": "node index.js"
+    "start": "node index.js",
+    "docker:login": "cat ../..//TOKEN.txt | docker login https://$npm_package_docker_hub -u rsouza01 --password-stdin",
+    "docker:build": "docker build -t $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version .",
+    "docker:push": "docker push $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version",
+    "docker:purge": "docker system prune --all",
+    "env": "echo $npm_package_docker_hub"
   }
 }

@@ -1,7 +1,15 @@
 {
   "name": "client",
+  "organization": "complexk8s",
+  "gitrepo": "docker-kubernetes",
   "version": "0.1.0",
   "private": true,
+  "configFileVersion": "1.0.0",
+  "description": "ComplexK8s Frontend",
+  "docker": {
+    "hub": "docker.pkg.github.com",
+    "tag": "$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -16,7 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:login": "cat ../../TOKEN.txt | docker login https://$npm_package_docker_hub -u rsouza01 --password-stdin",
+    "docker:build": "docker build -t $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version .",
+    "docker:push": "docker push $npm_package_docker_hub/$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version",
+    "docker:purge": "docker system prune --all"
   },
   "eslintConfig": {
     "extends": "react-app"
