@@ -7,6 +7,7 @@
   "configFileVersion": "1.0.0",
   "description": "ComplexK8s Frontend",
   "docker": {
+    "user": "rsouza01",
     "hub": "docker.pkg.github.com",
     "tag": "$npm_package_organization/$npm_package_gitrepo/$npm_package_name:$npm_package_version"
   },
@@ -14,18 +15,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.18.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
     "react-router-dom": "4.3.1",
-    "axios": "0.18.0"
+    "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "image:build": "./bin/build-docker.sh $npm_package_docker_hub $npm_package_organization $npm_package_gitrepo $npm_package_name $npm_package_version",
+    "image:build": "../../bin/build-docker.sh $npm_package_docker_hub $npm_package_organization $npm_package_gitrepo $npm_package_name $npm_package_version $npm_package_docker_user",
     "image:purge": "docker system prune --all"
   },
   "eslintConfig": {
