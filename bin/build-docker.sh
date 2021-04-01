@@ -33,3 +33,7 @@ echo "Tagging and pushing 'latest'..."
 docker tag $IMAGE_NAME:$VERSION $IMAGE_NAME:latest
 docker push $IMAGE_NAME:latest
 echo "Done" 
+
+# echo "Updating README for '$IMAGE_NAME'..."
+# docker pushrm $HUB/$REPO/$PACKAGE
+# echo "Done"
